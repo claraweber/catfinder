@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>peters cat finder</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Londrina+Solid&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@200&family=M+PLUS+Rounded+1c:wght@500&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Francois+One&display=swap" rel="stylesheet">
+  </head>
+  <style media="screen">
+    .header {
+      height: 200px;
+      font-family: Londrina Solid;
+    }
+    .h1 {
+      font-family: Londrina Solid;
+    }
+    .slides {
+      display: none;
+      vertical-align: top;
+    }
+    .body {
+      font-family: "Francois One";
+    }
+    .carousel-container{
+      width: 100%;
+      height: 100%;
+      text-align:center;
+    }
+    .container {
+      position: relative;
+      text-align:center;
+    }
+        .slidecontainer {
+          width: 100%;
+          text-align:center;
+        }
+    .slider{
+      -webkit-appearance: none;
+      appearance: none;
+      width:100%;
+      height:10px;
+      background: #d3d3d3;
+      opacity:0.7;
+    }
+    .slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width:25px;
+      height:25px;
+      background:#5140cb;
+    }
+    .button {
+      width: 100%;
+      height:30px;
+      background:white;
+      border:none;
+      font-family:Francois One;
+      padding-bottom: 5px;
+      border: 3px solid black;
+    }
+    .p {
+      font-family: Francois One;
+    }
+  </style>
+  <body style="background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);">
+    <div class="container">
+      <header>
+        <h1 style="font-family: Londrina Solid; margin: 50px">find your cat</h1>
+      </header>
+      <p style="font-family: Francois One">Ready to find your new roommate? Go ahead and rate these samples.</p>
+    </div>
+    <div class="row">
+      <div class="container">
+      <div class="carousel-container" id="cats">
+            <div class="slides"> <img class="img-fluid" src="./car1.jpg" style="width:100%"></div>
+           <div class="slides"> <img class="img-fluid" src="./car2.jpg" style="width:100%"></div>
+           <div class="slides"> <img class="img-fluid" src="./car3.jpg" style="width:100%"></div>
+           <div class="slides"> <img class="img-fluid" src="./car4.jpg" style="width:100%"></div>
+           <div class="slides"> <img class="img-fluid" src="./car5.jpg" style="width:100%"></div>
+           <div class="slides"> <img class="img-fluid" src="./car6.jpg" style="width:100%"></div>
+      </div>
+      </div>
+    </div>
+      <div class="container">
+        <p></p>
+        <p style="font-family: Francois One">Rate overall cuteness:</p>
+        <div id="demo"></div>
+        <div class="slidecontainer">
+            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+        </div>
+        <p style="font-family: Francois One">Rate physical appearance:</p>
+        <div id="age"></div>
+        <div class="slidecontainer">
+            <input type="range" min="1" max="100" value="50" class="slider" id="apprange">
+        </div>
+        <p style="font-family: Francois One">Rate perceived friendliness:</p>
+        <div id="color"></div>
+        <div class="slidecontainer">
+            <input type="range" min="1" max="100" value="50" class="slider" id="friendrange">
+        </div>
+        <p></p>
+        <button class="button" name="button" id="mybutton">ok, next cat</button>
+        <p></p>
+        <button class="button" name="button" onclick="plusSlides(-1)" id="prevbutton">go one back</button>
+        <p></p>
+        <button class="button" name="button" onclick="plot()" id="endbutton">i'm done</button>
+        <script type="text/javascript">
+              var slider = document.getElementById("myRange");
+              var output = document.getElementById("demo");
+              var slider2 = document.getElementById("apprange");
+              var output2 = document.getElementById("age");
+              var slider3 = document.getElementById("friendrange");
+              var output3 = document.getElementById("color");
+              output.innerHTML = slider.value;
+              output2.innerHTML = slider2.value;
+              slider2.oninput = function() {
+                document.getElementById("age").innerHTML=this.value;
+              },
+              slider3.oninput = function() {
+                document.getElementById("color").innerHTML=this.value;
+              },
+              output3.innerHTML = slider3.value;
+              slider.oninput = function() {
+                document.getElementById("demo").innerHTML=this.value;
+              },
+              mybutton.onclick = function(){
+                cutenessarray.push(Number(slider.value));
+                agearray.push(Number(slider2.value));
+                colorarray.push(Number(slider3.value));
+                plusSlides(1);
+                console.log(cutenessarray)
+              }
+
+      </script>
+      </div>
+      <script type="text/javascript">
+      const cutenessarray = [];
+      const agearray = [];
+      const colorarray = [];
+      </script>
+      <div class="container">
+      <h1 style="font-family: Londrina Solid; margin: 50px; opacity: 0", id="resultheader">Your Result</h1>
+      <p style="font-family: Francois One" id="ratemessage"></p>
+      <div class="plot" id="catplot">
+        <canvas id="myChart" width="300" height="300"></canvas>
+      </div>
+      </div>
+      <script type="text/javascript">
+      function plot(){
+        document.getElementById("catplot").style.background = 'white';
+      var ctx = document.getElementById('myChart').getContext('2d');
+      var myChart = new Chart(ctx, {
+      type: 'radar',
+          data: {
+            labels: ["Snowball", "Sigmund", "Jerry", "Garfield", "Klaus", "Cleo"],
+            datasets: [{
+                data: cutenessarray,
+                label: "Overall Cuteness",
+                borderColor: "rgb(62,149,205)",
+                backgroundColor: "rgb(62,149,205,0.1)",
+              }, {
+                data: agearray,
+                label: "Fur Color",
+                borderColor: "rgb(60,186,159)",
+                backgroundColor: "rgb(60,186,159,0.1)",
+              }, {
+                data: colorarray,
+                label: "Compatibility",
+                borderColor: "rgb(255,165,0)",
+                backgroundColor:"rgb(255,165,0,0.1)",
+              }
+            ]
+          },
+          options: {
+            scale: {
+              ticks:
+        {callback: function() {return " "},
+        backdropColor: "rgba(0, 0, 0, 0)"}
+            },
+    responsive: true,
+    plugins: {
+      title: {
+        display: false
+      }
+    }}});
+    function indexOfMax(arr) {
+    if (arr.length === 0) {
+        return -1;
+    }
+
+    var max = arr[0];
+    var maxIndex = 0;
+
+    for (var i = 1; i < arr.length; i++) {
+        if (arr[i] > max) {
+            maxIndex = i;
+            max = arr[i];
+        }
+    }
+
+    return maxIndex;
+};
+    //getmax
+    var maxcuteness= indexOfMax(cutenessarray);
+    var maxcolor = indexOfMax(agearray);
+    var maxfriendly = indexOfMax(colorarray);
+    var cutedesc = ["Snowball", "Sigmund", "Jerry", "Garfield", "Klaus", "Cleo"];
+    var colordesc = ["white", 'tiger', 'blue-eyed', 'brown', 'blue-eyed', 'red'];
+    var frienddesc = ['derpy', 'funny', 'playful', 'chill', 'young', 'lazy'];
+    document.getElementById('resultheader').style.opacity=1;
+    document.getElementById('ratemessage').innerHTML ="You rated sample cats like this";
+    document.getElementById('endmessage').innerHTML = "So, I'd recommend getting literally ANY cat because they're all cute. However data suggests you get something like " + cutedesc[maxcuteness] +", a " +colordesc[maxcolor]+", "+frienddesc[maxfriendly]+ ' cat.';
+  }
+      </script>
+      <p id='endmessage' style="margin: 20px; font-size:24px; text-align:center; font-family:Francois One"></p>
+    </div>
+
+    <script type="text/javascript">
+    var slideIndex = 1;
+    showSlides(slideIndex);
+
+    // Next/previous controls
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+
+    // Thumbnail image controls
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+      var i;
+      var slides = document.getElementsByClassName("slides");
+      if (n > slides.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = slides.length}
+      for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+      }
+      slides[slideIndex-1].style.display = "block";
+    };
+    </script>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+  </body>
+</html>
