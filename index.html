@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>peters cat finder</title>
-    <link rel="shortcut icon" type="image/jpg" href="./favicon.png"/>
+
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -73,6 +73,18 @@
       padding-bottom: 5px;
       border: 3px solid black;
     }
+    .progressbar {
+      width: 100%;
+      height:30px;
+      background:white;
+      border:none;
+      font-family:Francois One;
+      padding-bottom: 5px;
+      border: 3px solid black;
+    }
+    .progressinside{
+      width: 100%;
+    }
     .p {
       font-family: Francois One;
     }
@@ -97,7 +109,7 @@
       </div>
     </div>
       <div class="container">
-        <p></p>
+        <p style="font-family: Francois One" id="catname"></p>
         <p style="font-family: Francois One">Rate overall cuteness:</p>
         <div id="demo"></div>
         <div class="slidecontainer">
@@ -115,10 +127,12 @@
         </div>
         <p></p>
         <button class="button" name="button" id="mybutton">ok, next cat</button>
+        <button class="button" name="button" id="prevbutton" style="border-top:none">go one back</button>
         <p></p>
-        <button class="button" name="button" onclick="plusSlides(-1)" id="prevbutton">go one back</button>
-        <p></p>
-        <button class="button" name="button" onclick="plot()" id="endbutton">i'm done</button>
+        <div class="progressbar" id="progressbar"> You're 0% done.
+          <div class="progressinside" id="pro" style="width:0%; height:24px; background:linear-gradient(62deg, rgba(255,52,54,1) 0%, rgba(231,178,47,1) 19%, rgba(102,190,126,1) 45%, rgba(43,189,186,1) 68%, rgba(118,105,210,1) 85%, rgba(186,64,203,1) 100%);"></div>
+        </div>
+        <button class="button" name="button" onclick="plot()" id="endbutton" style="border-top: none">Show Results</button>
         <script type="text/javascript">
               var slider = document.getElementById("myRange");
               var output = document.getElementById("demo");
@@ -139,13 +153,21 @@
                 document.getElementById("demo").innerHTML=this.value;
               },
               mybutton.onclick = function(){
-                cutenessarray.push(Number(slider.value));
-                agearray.push(Number(slider2.value));
-                colorarray.push(Number(slider3.value));
+                cutenessarray[slideIndex-1]=(Number(slider.value));
+                agearray[slideIndex-1]=(Number(slider2.value));
+                colorarray[slideIndex-1]=(Number(slider3.value));
                 plusSlides(1);
+                document.getElementById('catname').innerHTML='This is '+cutedesc[slideIndex-1];
                 console.log(cutenessarray)
-              }
-
+                document.getElementById('progressbar').innerHTML ="You're "+Math.round((slideIndex*100)/6) + "% done. <div id='pro' style='width:0%; height:24px; background:linear-gradient(62deg, rgba(255,52,54,1) 0%, rgba(231,178,47,1) 19%, rgba(102,190,126,1) 45%, rgba(43,189,186,1) 68%, rgba(118,105,210,1) 85%, rgba(186,64,203,1) 100%);'></div>";
+                document.getElementById('pro').style.width = Math.round((slideIndex*100)/6)+'%';
+              };
+              prevbutton.onclick = function (){
+                document.getElementById('catname').innerHTML='This is '+cutedesc[slideIndex-1];
+                document.getElementById('progressbar').innerHTML ="You're "+Math.round((slideIndex*100)/6) + "% done. <div id='pro' style='width:0%; height:24px; background:linear-gradient(62deg, rgba(255,52,54,1) 0%, rgba(231,178,47,1) 19%, rgba(102,190,126,1) 45%, rgba(43,189,186,1) 68%, rgba(118,105,210,1) 85%, rgba(186,64,203,1) 100%);'></div>";
+                document.getElementById('pro').style.width = Math.round((slideIndex*100)/6)+'%';
+                plusSlides(-1);
+              };
       </script>
       </div>
       <script type="text/javascript">
@@ -254,6 +276,8 @@
       }
       slides[slideIndex-1].style.display = "block";
     };
+    var cutedesc = ["Snowball", "Sigmund", "Jerry", "Garfield", "Klaus", "Cleo"];
+    document.getElementById('catname').innerHTML='This is '+cutedesc[slideIndex-1];
     </script>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
