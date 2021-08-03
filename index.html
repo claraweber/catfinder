@@ -93,10 +93,10 @@
       font-family: Francois One;
     }
   </style>
-  <body style="background-image: linear-gradient(to bottom, #fddb92 0%, #d1fdff 100%);">
+  <body style="background: linear-gradient(to right, #FF0080, #FF8C00, #40E0D0);">
     <div class="container">
       <header>
-        <h1 style="font-family: Londrina Solid; margin: 50px">find your cat</h1>
+        <h1 style="font-family: Londrina Solid; margin: 50px; font-size: 40px">find your cat</h1>
       </header>
       <p style="font-family: Francois One">Ready to find your new roommate? Go ahead and rate these samples.</p>
     </div>
@@ -163,13 +163,13 @@
                 plusSlides(1);
                 document.getElementById('catname').innerHTML='This is '+cutedesc[slideIndex-1];
                 console.log(cutenessarray)
-                document.getElementById('progressbar').innerHTML ="You're "+Math.round(((slideIndex)*100)/6) + "% done. <div id='pro' style='width:0%; height:24px; background:linear-gradient(62deg, rgba(255,52,54,1) 0%, rgba(231,178,47,1) 19%, rgba(102,190,126,1) 45%, rgba(43,189,186,1) 68%, rgba(118,105,210,1) 85%, rgba(186,64,203,1) 100%);'></div>";
-                document.getElementById('pro').style.width = Math.round(((slideIndex-1)*100)/6)+'%';
+                document.getElementById('progressbar').innerHTML ="You're "+Math.round(((cutenessarray.length*100)/6) + "% done. <div id='pro' style='width:0%; height:24px; background:linear-gradient(62deg, rgba(255,52,54,1) 0%, rgba(231,178,47,1) 19%, rgba(102,190,126,1) 45%, rgba(43,189,186,1) 68%, rgba(118,105,210,1) 85%, rgba(186,64,203,1) 100%);'></div>";
+                document.getElementById('pro').style.width = Math.round(((cutenessarray.length*100)/6)+'%';
               };
               prevbutton.onclick = function (){
                 document.getElementById('catname').innerHTML='This is '+cutedesc[slideIndex-1];
-                document.getElementById('progressbar').innerHTML ="You're "+Math.round(((slideIndex)*100)/6) + "% done. <div id='pro' style='width:0%; height:24px; background:linear-gradient(62deg, rgba(255,52,54,1) 0%, rgba(231,178,47,1) 19%, rgba(102,190,126,1) 45%, rgba(43,189,186,1) 68%, rgba(118,105,210,1) 85%, rgba(186,64,203,1) 100%);'></div>";
-                document.getElementById('pro').style.width = Math.round(((slideIndex-1)*100)/6)+'%';
+                document.getElementById('progressbar').innerHTML ="You're "+Math.round(((cutenessarray.length*100)/6) + "% done. <div id='pro' style='width:0%; height:24px; background:linear-gradient(62deg, rgba(255,52,54,1) 0%, rgba(231,178,47,1) 19%, rgba(102,190,126,1) 45%, rgba(43,189,186,1) 68%, rgba(118,105,210,1) 85%, rgba(186,64,203,1) 100%);'></div>";
+                document.getElementById('pro').style.width = Math.round((cutenessarray.length*100)/6)+'%';
                 plusSlides(-1);
               };
       </script>
