@@ -164,7 +164,7 @@
                 document.getElementById('pro').style.width = Math.round((cutenessarray.length*100)/6)+'%';
               };
               prevbutton.onclick = function (){
-                document.getElementById('catname').innerHTML='This is '+cutedesc[slideIndex-1];
+                document.getElementById('catname').innerHTML='This is &#10024;'+cutedesc[slideIndex-1]+'&#10024;';
                 document.getElementById('progressbar').innerHTML ="You're "+Math.round((cutenessarray.length*100)/6) + "% done. <div id='pro' style='width:0%; height:24px; background:linear-gradient(62deg, rgba(255,52,54,1) 0%, rgba(231,178,47,1) 19%, rgba(102,190,126,1) 45%, rgba(43,189,186,1) 68%, rgba(118,105,210,1) 85%, rgba(186,64,203,1) 100%);'></div>";
                 document.getElementById('pro').style.width = Math.round((cutenessarray.length*100)/6)+'%';
                 plusSlides(-1);
@@ -248,9 +248,11 @@
     document.getElementById('resultheader').style.opacity=1;
     document.getElementById('ratemessage').innerHTML ="You rated sample cats like this";
     document.getElementById('endmessage').innerHTML = "So, I'd recommend getting literally ANY cat because they're all cute. However, data suggests you might like something like " + cutedesc[maxcuteness] +", or another " +colordesc[maxcolor]+", "+frienddesc[maxfriendly]+ ' cat.';
+    document.getElementById('reloadmessage').innerHTML ="reload page to take quiz again";
   }
       </script>
       <p id='endmessage' style="margin: 20px; font-size:24px; text-align:center; font-family:Francois One"></p>
+      <p id='reloadmessage' style="margin: 10px; font-size:10px; text-align:center; font-family:Francois One"></p>
     </div>
 
     <script type="text/javascript">
